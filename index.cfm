@@ -53,9 +53,9 @@
                   <!--- Start: TagBuilder Field and Bin --->
                   <div class="tagBuilderWrapper">
                      <label class="tagBuilderFieldLabel"></label>
-                     <input type="text" id="exampleOne_add" name="exampleOne_add" class="tagBuilderAdd form-control-sm " placeholder="Add a Filter">
+                     <input type="text" id="exampleOne_add" name="exampleOne_add" class="tagBuilderAdd form-control-sm " placeholder="Add a Tag">
 
-                     <div id="exampleOne_msg" class="tagBuilderMsg">Add Search Filters</div>
+                     <div id="exampleOne_msg" class="tagBuilderMsg">Add Tags</div>
                      <div id="exampleOne_bin" class="tagBuilderBin d-none"></div>
                      <input type="hidden" id="exampleOne" name="exampleOne" class="tagBuilder" value=""
                         data-fieldvalue=""
@@ -79,9 +79,9 @@
                   <!--- Start: TagBuilder Field and Bin --->
                   <div class="tagBuilderWrapper">
                      <label class="tagBuilderFieldLabel"></label>
-                     <input type="text" id="exampleTwo_add" name="exampleTwo_add" class="tagBuilderAdd form-control-sm " placeholder="Add a Filter">
+                     <input type="text" id="exampleTwo_add" name="exampleTwo_add" class="tagBuilderAdd form-control-sm " placeholder="Add a Tag">
 
-                     <div id="exampleTwo_msg" class="tagBuilderMsg">Add Search Filters</div>
+                     <div id="exampleTwo_msg" class="tagBuilderMsg">Add Tags</div>
                      <div id="exampleTwo_bin" class="tagBuilderBin d-none"></div>
                      <input type="hidden" id="exampleTwo" name="exampleTwo" class="tagBuilder" value=""
                         data-fieldvalue=""

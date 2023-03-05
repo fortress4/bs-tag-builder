@@ -1,0 +1,67 @@
+/*
+   control-tag-builder.css
+*/
+
+tagBuilderWrapper {
+  width: 100%;
+  margin: auto;
+  background-color: #fff;
+  position: relative;
+  padding: 60px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/*.tagBuilderWrapper {
+!*.tb-wrapper {*!
+  width: 100%; !* 800px *!
+  margin: auto;
+  background-color: #fff;
+  position: relative;
+  !*top: 20vh;*!
+  padding: 60px;
+  box-sizing: border-box;
+  !*font-family: 'Open Sans', sans-serif;*!
+  border: 1px solid black;
+  border-radius: 15px;
+  overflow: hidden;
+}*/
+
+.tagBuilderWrapper .tagBuilderBin {
+  position: relative;
+  min-height: 4rem;
+  width: 100%;
+  padding: 5px;
+  /*border: 1px solid blue;*/
+}
+
+.tagBuilderWrapper .tagBuilderFieldLabel {
+   font-size: 0.9rem;
+   color: #999;
+   margin-bottom: 0.25rem;
+}
+
+.tagBuilderWrapper input {
+  width: 100% !important;
+  padding: 10px 15px;
+  box-sizing: border-box;
+  border: 2px solid rgba(176, 176, 176, 0.2);
+  height: 45px;
+  border-radius: 4px;
+  outline-color: #c5c7d6;
+  margin-bottom: 10px;
+}
+
+.tagBuilderWrapper input::placeholder {
+  color: #aaa;
+}
+
+.tagBuilderWrapper .tagBuilderMsg {
+   font-size: 0.85em;
+   color: #777;
+   font-style: italic;
+   margin-top: 0;
+   margin-bottom: 0.5em;
+   padding: 0;
+   padding-left: 1em;
+}

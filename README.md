@@ -9,7 +9,7 @@ Dependencies:
 4. [HTML5 Sortable v0.13.x](https://lukasoppermann.github.io/html5sortable/) (0.13.3)
 5. [BootboxJS 6.x](http://bootboxjs.com/) (6.0.0)
 
-Demo/Preview page comping soon.
+View the [Demo/Preview](https://fortress4.github.io/bs-tag-builder/) page.
 
 Warning: This is a work in progress.
 

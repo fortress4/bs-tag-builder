@@ -20,7 +20,7 @@ $(function() {
          source: {
          alias: {
                ajax: {
-                   type: "POST",
+                   type: "GET",
                    url: 'data/libs.json',
                    dataType: 'json'
                }
@@ -58,7 +58,7 @@ $(function() {
          alias: {
                ajax: {
                   type: "POST",
-                  url: 'data/libs.html',
+                  url: 'data/libs.json',
                   dataType: 'json'
                }
             }

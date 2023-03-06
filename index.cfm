@@ -1,3 +1,11 @@
+<cfscript>
+   controlsCFC = createObject("component","components.controls");
+
+
+
+</cfscript>
+
+
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8">
@@ -6,13 +14,16 @@
     <meta name="author" content="">
     <!---<link rel="icon" href="../../../../favicon.ico">--->
 
-    <title>Bootstrap TagBuilder</title>
+    <title>Bootstrap TagBuilder (TagListBuilder)</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css" integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-typeahead@2.11.1/dist/jquery.typeahead.min.css" integrity="sha256-v9xSYLU+r7kTI8gK714wGSObfWX0rrcWFZvPil8qZEw=" crossorigin="anonymous">
+
     <link rel="stylesheet" href="css/tag-builder.css">
+    <link rel="stylesheet" href="css/tag-builder-typeahead.css">
   </head>
 
   <body>
@@ -38,20 +49,43 @@
 
       <div class="jumbotron">
          <h1 class="display-3">Bootstrap TagBuilder</h1>
+         <!---<h2 class="display-6">(TagListBuilder)</h2>--->
         <!---<p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>--->
         <!---<p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>--->
       </div>
 
+      <!--- // ROW 1 --->
       <div class="row">
          <div class="col-lg-6">
 
             <div class="card border border-2 rounded-3 m-2 p-4">
 
                <div class="card-body">
-                  <h5 class="card-title">Tag Builder Field (With Sorting)</h5>
+                  <h5 class="card-title">Tag Builder Field (Tag Sorting)</h5>
 
                   <!--- Start: TagBuilder Field and Bin --->
-                  <div class="tagBuilderWrapper">
+                  <cfscript>
+                     fieldArgs = {
+                        fieldName="exampleOne",
+                        fieldLabel = '',
+                        required = false,
+                        readonly = false,
+                        placeholder = "Add a Tag",
+                        fieldValue = "",
+                           // autoComplete = false,
+                        tagCase = "capitalize",
+                        enableTagSorting = true,
+                           // validateTags = 'global',  // global/local/custom
+                           // validateTagsSrc = 'resourceList',
+                           // validateTagsFilter = '',
+                        addFieldClass = '',
+                        messageText = 'Add Tags'
+                     };
+                     //useLowerCaseTags = false,
+                     //WriteDump(var=fieldArgs,expand=false);
+                  </cfscript>
+                  <cfoutput>#controlsCFC.renderTagListInputField(argumentCollection=fieldArgs)#</cfoutput>
+                  <!---<div class="tagBuilderWrapper">
                      <label class="tagBuilderFieldLabel"></label>
                      <input type="text" id="exampleOne_add" name="exampleOne_add" class="tagBuilderAdd form-control-sm " placeholder="Add a Tag">
 
@@ -65,7 +99,7 @@
                         data-tagcase="capitalize"
                         data-tagsorting="1"
                         data-validatetags="global">
-                  </div>
+                  </div>--->
                   <!--- End: TagBuilder Field and Bin --->
                </div>
             </div>
@@ -75,9 +109,30 @@
 
             <div class="card border border-2 rounded-3 m-2 p-4">
 
-                  <h5 class="card-title">Tag Builder Field (No Sorting)</h5>
+                  <h5 class="card-title">Tag Builder Field (No Tag Sorting)</h5>
                   <!--- Start: TagBuilder Field and Bin --->
-                  <div class="tagBuilderWrapper">
+                  <cfscript>
+                     fieldArgs = {
+                        fieldName="exampleTwo",
+                        fieldLabel = '',
+                        required = false,
+                        readonly = false,
+                        placeholder = "Add a Tag",
+                        fieldValue = "",
+                           // autoComplete = false,
+                        tagCase = "capitalize",
+                        enableTagSorting = false,
+                           // validateTags = 'global',  // global/local/custom
+                           // validateTagsSrc = 'resourceList',
+                           // validateTagsFilter = '',
+                        addFieldClass = '',
+                        messageText = 'Add Tags'
+                     };
+                     //useLowerCaseTags = false,
+                     //WriteDump(var=fieldArgs,expand=false);
+                  </cfscript>
+                  <cfoutput>#controlsCFC.renderTagListInputField(argumentCollection=fieldArgs)#</cfoutput>
+                  <!---<div class="tagBuilderWrapper">
                      <label class="tagBuilderFieldLabel"></label>
                      <input type="text" id="exampleTwo_add" name="exampleTwo_add" class="tagBuilderAdd form-control-sm " placeholder="Add a Tag">
 
@@ -91,7 +146,75 @@
                         data-tagcase="lowercase"
                         data-tagsorting="0"
                         data-validatetags="global">
-                  </div>
+                  </div>--->
+                  <!--- End: TagBuilder Field and Bin --->
+
+            </div>
+
+         </div>
+      </div>
+
+      <!--- // ROW 2 --->
+      <div class="row">
+         <div class="col-lg-6">
+
+            <div class="card border border-2 rounded-3 m-2 p-4">
+
+               <div class="card-body">
+                  <h5 class="card-title">Tag Builder Field with Typeahead (Tag Sorting)</h5>
+
+                  <!--- Start: TagBuilder Field and Bin --->
+                  <cfscript>
+                     fieldArgs = {
+                        fieldName="exampleThree",
+                        fieldLabel = '',
+                        required = false,
+                        readonly = false,
+                        placeholder = "Add a Tag",
+                        fieldValue = "",
+                        tagCase = "capitalize",
+                        enableTagSorting = true,
+                           // validateTags = 'global',  // global/local/custom
+                           // validateTagsSrc = 'resourceList',
+                           // validateTagsFilter = '',
+                        addFieldClass = '',
+                        messageText = 'Add Tags'
+                     };
+                     //useLowerCaseTags = false,
+                     //WriteDump(var=fieldArgs,expand=false);
+                  </cfscript>
+                  <cfoutput>#controlsCFC.renderTagListTypeAheadInputField(argumentCollection=fieldArgs)#</cfoutput>
+                  <!--- End: TagBuilder Field and Bin --->
+
+               </div>
+            </div>
+
+         </div>
+         <div class="col-lg-6">
+
+            <div class="card border border-2 rounded-3 m-2 p-4">
+
+                  <h5 class="card-title">Tag Builder Field with Typeahead (No Tag Sorting)</h5>
+
+                  <!--- Start: TagBuilder Field and Bin --->
+                  <cfscript>
+                     fieldArgs = {
+                        fieldName="exampleFour",
+                        fieldLabel = '',
+                        required = false,
+                        readonly = false,
+                        placeholder = "Add a Tag",
+                        fieldValue = "",
+                        tagCase = "lowercase",
+                        enableTagSorting = false,
+                           // validateTags = 'global',  // global/local/custom
+                           // validateTagsSrc = 'resourceList',
+                           // validateTagsFilter = '',
+                        addFieldClass = '',
+                        messageText = 'Add Tags'
+                     };
+                  </cfscript>
+                  <cfoutput>#controlsCFC.renderTagListTypeAheadInputField(argumentCollection=fieldArgs)#</cfoutput>
                   <!--- End: TagBuilder Field and Bin --->
 
             </div>
@@ -124,7 +247,7 @@
       </div>--->
 
       <footer class="footer">
-         <cfoutput><p>&copy; #Year(Now())# bsTagBuilder</p></cfoutput>
+         <cfoutput><p>&copy; #Year(Now())# Bootstrap TagBuilder (TagListBuilder)</p></cfoutput>
       </footer>
 
     </div> <!-- /container -->
@@ -137,6 +260,9 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/6.0.0/bootbox.min.js" integrity="sha512-oVbWSv2O4y1UzvExJMHaHcaib4wsBMS5tEP3/YkMP6GmkwRJAa79Jwsv+Y/w7w2Vb/98/Xhvck10LyJweB8Jsw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/jquery-typeahead@2.11.1/dist/jquery.typeahead.min.js" integrity="sha256-HQvzpKdugcSoVwponjVtzqQ+dpijVZYbuvodUpcGAIs=" crossorigin="anonymous"></script>
+
     <script src="js/tag-builder.js"></script>
+    <script src="js/tag-builder-typeahead.js"></script>
 </body>
 </html>

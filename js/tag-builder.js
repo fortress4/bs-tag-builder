@@ -6,6 +6,14 @@
 var tags_array = {};
 var tagBuilderDebug = 1;
 
+var tbConfig = {
+      tagSorting: 0,
+      autoComplete: 0,
+      tagCase: ''
+    };
+
+// console.log('tbConfig: ', tbConfig);
+
 $(function() {
 
    // Init each of the tagBuilder Field Groups
@@ -14,15 +22,25 @@ $(function() {
 
       var tb_field = $(obj);
       var tb_field_id = tb_field.attr('id');
-      var tb_sortTags = tb_field.data('tagsorting');
-      var tb_autoComplete = tb_field.data('autocomplete');
+
+      // var tb_sortTags = tb_field.data('tagsorting');
+      //var tb_autoComplete = tb_field.data('autocomplete');
+      //var tb_tagCase = tb_field.data('tagcase');
+      //var tb_lowerCase = tb_field.data('lowercasetags');
 
       tags_array[tb_field_id] = [];
+
+      tbConfig.tagSorting = tb_field.data('tagsorting');
+      tbConfig.autoComplete = tb_field.data('autocomplete');
+      tbConfig.tagCase = tb_field.data('tagcase');
 
       // console.log('tb_field: ', i, obj);
       // console.log('tb_field_id: ', tb_field_id);
       // console.log('tb_sortTags: ', tb_sortTags);
       // console.log('tags_array: ', tb_field_id, tags_array[tb_field_id]);
+
+      //console.log('tb_autoComplete: ', tb_autoComplete);
+      //console.log('tb_tagCase: ', tb_tagCase);
 
       var tb_wrapper = tb_field.parent('.tagBuilderWrapper');
 
@@ -53,7 +71,7 @@ $(function() {
       if ( fldValue.trim().length )
          fldValueArr = fldValue.split(',');
 
-      //console.log('fldValueArr: ',fldValueArr);
+      // console.log('fldValueArr: ',fldValueArr);
 
       if ( fldValueArr.length > 0 ) {
          tb_msg.addClass('d-none');
@@ -61,7 +79,7 @@ $(function() {
 
          $.each(fldValueArr, function(index, value){
             tags_array[tb_field_id].push(value);
-            tb_renderTag(tb_field,tb_bin,value,tb_sortTags);
+            tb_renderTag(tb_field,tb_bin,value,tbConfig.tagSorting);
          });
          tb_addTagToHiddenField(tb_field,fldValueArr);
       }
@@ -91,7 +109,7 @@ $(function() {
          }
       });
 
-      if ( tb_sortTags == 1 )
+      if ( tbConfig.tagSorting == 1 )
       {
          sortable(tb_bin, {
              orientation: 'horizontal',
@@ -117,6 +135,7 @@ $(function() {
              if ( tagBuilderDebug )
              {
                 console.log('tags_array: ',tb_field_id,tags_array[tb_field_id]);
+
                 var dataAttr = tb_field.data('fieldvalue');
                 console.log('data-fieldvalue: ',dataAttr);
                 var dataVal = tb_field.val();
@@ -154,7 +173,7 @@ $(function() {
          sortable(fldInput); // Refresh the Sortable Container
    });
 
-   $('.tagBuilderShowBtn').click(function() {
+   /*$('.tagBuilderShowBtn').click(function() {
        var fldBtn = $(this);
        var fldWrapper = fldBtn.parents('.tagBuilderWrapper');
        var fldInput = fldWrapper.find('.tagBuilder');
@@ -171,7 +190,7 @@ $(function() {
          fldBtn.find('.tagBuilderShowArrow').removeClass('fa-caret-up').addClass('fa-caret-down');
          fldBtn.find('span').text('Show Raw Tag List');
        }
-   });
+   });*/
 
 });
 
@@ -184,14 +203,20 @@ function tb_addTag(field,container,msgdiv,addfield,event) {
    // console.log('addfield: ', addfield);
 
    var field_id = field.attr('id');
-   var sort_tags = field.data('tagsorting');
-   var autocomplete = field.data('autocomplete');
+   // var sort_tags = field.data('tagsorting');
+   // var autocomplete = field.data('autocomplete');
+   // var tagCase = field.data('tagcase');
+
+   tbConfig.tagSorting = field.data('tagsorting');
+   tbConfig.autoComplete = field.data('autocomplete');
+   // tbConfig.tagCase = field.data('tagcase');
+
    var new_tag = addfield.val().trim();
 
    //console.log('new_tag: ', new_tag);
 //debugger;
 
-   if (event.keyCode == 13) {
+   if ( event.keyCode == 13 ) {
       event.preventDefault();
       event.stopPropagation();
 
@@ -218,22 +243,20 @@ function tb_addTag(field,container,msgdiv,addfield,event) {
       else {
           tags_array[field_id].push(new_tag);
 
-          tb_renderTag(field,container,new_tag,sort_tags);
+          tb_renderTag(field,container,new_tag,tbConfig.tagSorting);
           tb_addTagToHiddenField(field,tags_array[field_id]);
           addfield.val('');
-
-
 
           if ( tags_array[field_id].length ) {
              msgdiv.addClass('d-none');
              container.removeClass('d-none');
           }
 
-          //if ( sort_tags == 1)
-          //  sortable(container); // Refresh the Sortable Container
+          //if ( tbConfig.tagSorting == 1)
+          //sortable(container); // Refresh the Sortable Container
 
           // If autocomplete is enabled
-          if ( autocomplete )
+          if ( tbConfig.autoComplete )
             addfield.parents('.typeahead__container ').removeClass('cancel');
       }
 
@@ -241,14 +264,23 @@ function tb_addTag(field,container,msgdiv,addfield,event) {
    }
 }
 
-function tb_renderTag(field,container,tagText,sortTags) {
+function tb_renderTag(field,container,tagText,sortTags,tagColor) {
    tagText = typeof tagText !== 'undefined' ? tagText : 'New Tag';
    sortTags = typeof sortTags !== 'undefined' ? sortTags : 0; // Set to true of sortable option is set
+   tagColor = typeof tagColor !== 'undefined' ? tagColor : '';
 
+   var tagCase = field.data('tagcase');
    //console.log('tagText:', tagText);
 
-   if ( tagText.length > 0  )
-      tagText = tagText.toLowerCase();
+   if ( tagText.length > 0 ) {
+      if ( tagCase == 'lower' )
+         tagText = tagText.toLowerCase();
+      else if ( tagCase == 'upper' )
+         tagText = tagText.toUpperCase();
+      else if ( tagCase == 'capitalize' ){
+         tagText = tb_capitalizeStr(tagText);
+      }
+   }
 
    // console.log('tagText (LC): ', tagText);
 
@@ -265,7 +297,12 @@ function tb_renderTag(field,container,tagText,sortTags) {
       titleAttr = ' title="Drag to sort tag: ' + tagText + '"';
    }
 
-   container.append('<span id="'+tagID+'" class="tagBuilderTag badge rounded-pill bg-primary p-2 me-2 mb-1'+tagClass+'" '+titleAttr+'>' + tagText + '<i class="removeTag fa-regular fa-circle-xmark ms-2" title="Click X to remove tag: ' + tagText + '"></i></span>');
+   if ( tagColor !== '' )
+      tagClass = tagClass + ' ' + tagColor;
+   else
+      tagClass = tagClass + ' bg-primary'
+
+   container.append('<span id="'+tagID+'" class="tagBuilderTag badge rounded-pill p-2 me-2 mb-1'+tagClass+'" '+titleAttr+'>' + tagText + '<i class="removeTag fa-regular fa-circle-xmark ms-2" title="Click X to remove tag: ' + tagText + '"></i></span>');
 
    if ( sortTags == 1)
       sortable(container); // Refresh the Sortable Container
@@ -292,4 +329,26 @@ function tb_removeTagFromHiddenField(field,data) {
    field.val(fldValues).data('fieldvalue',fldValues);
 }
 
+function tb_capitalizeStr(str) {
+   retStr = str;
+   retStr = _capitalizeStr(retStr," ");
+   retStr = _capitalizeStr(retStr,"/");
+   retStr = _capitalizeStr(retStr,"(");
 
+   return retStr;
+}
+
+function _capitalizeStr(str,separator) {
+   separator = typeof separator !== 'undefined' ? separator : ' ';
+   const arr = str.split(separator);
+
+   //loop through each element of the array and capitalize the first letter.
+   for (var i = 0; i < arr.length; i++) {
+       arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+   }
+
+   //Join all the elements of the array back into a string  using a blankspace as a separator
+   const retStr = arr.join(separator);
+
+   return retStr;
+}

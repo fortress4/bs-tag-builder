@@ -13,5 +13,14 @@ View the [Demo](https://fortress4.github.io/bs-tag-builder/) page.
 
 Warning: This is a work in progress.
 
+Options:
+
+
+* Autocomplete/TypeAhead
+  * Requires:
+    * Additional HTML around the form-control input
+    * Autocomplete js library
+    * Additional JS/Ajax data call (see tag-builder-typeahead.js)
+
 
 

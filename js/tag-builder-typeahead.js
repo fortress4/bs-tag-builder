@@ -20,7 +20,7 @@ $(function() {
          source: {
          alias: {
                ajax: {
-                   type: "POST",
+                   type: "GET",
                    url: 'data/libs.json',
                }
             }
@@ -57,7 +57,7 @@ $(function() {
          alias: {
                ajax: {
                   type: "POST",
-                  url: 'data/libs.html', // Using .html to work around github pages issue
+                  url: 'data/libs.html',
                }
             }
          }

@@ -269,15 +269,19 @@ function tb_renderTag(field,container,tagText,sortTags,tagColor) {
    sortTags = typeof sortTags !== 'undefined' ? sortTags : 0; // Set to true of sortable option is set
    tagColor = typeof tagColor !== 'undefined' ? tagColor : '';
 
-   var tagCase = field.data('tagcase');
+   //var autocomplete = field.data('autocomplete');
+   //var tagCase = field.data('tagcase');
    //console.log('tagText:', tagText);
+   
+   tbConfig.tagCase = field.data('tagcase');
+   tbConfig.tagSorting = field.data('tagsorting');
 
    if ( tagText.length > 0 ) {
-      if ( tagCase == 'lower' )
+      if ( tbConfig.tagCase == 'lower' )
          tagText = tagText.toLowerCase();
-      else if ( tagCase == 'upper' )
+      else if ( tbConfig.tagCase == 'upper' )
          tagText = tagText.toUpperCase();
-      else if ( tagCase == 'capitalize' ){
+      else if ( tbConfig.tagCase == 'capitalize' ){
          tagText = tb_capitalizeStr(tagText);
       }
    }
@@ -306,6 +310,32 @@ function tb_renderTag(field,container,tagText,sortTags,tagColor) {
 
    if ( sortTags == 1)
       sortable(container); // Refresh the Sortable Container
+}
+
+// tbConfig.tagSorting = tb_field.data('tagsorting');
+// tbConfig.autoComplete = tb_field.data('autocomplete');
+// tbConfig.tagCase = tb_field.data('tagcase');
+
+function tb_tagSorting(tb_field) {
+   var field = $(tb_field);
+   
+   if ( field.data('tagsorting') )
+      tbConfig.tagSorting = field.data('tagsorting');
+}
+
+
+function tb_autoComplete(tb_field) {
+   var field = $(tb_field);
+   
+   if ( field.data('autocomplete') ) 
+      tbConfig.autoComplete = field.data('autocomplete');
+}
+
+function tb_tagCase(tb_field) {
+   var field = $(tb_field);
+   
+   if ( field.data('tagcase') ) 
+      tbConfig.tagCase = field.data('tagcase');
 }
 
 /*function tb_addTagItem(field,data) {

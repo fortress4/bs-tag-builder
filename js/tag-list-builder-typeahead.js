@@ -1,7 +1,7 @@
 /* tag-builder-typeahead.js */
 $(function() {
 
-   console.log('typeahead: ', $('.typeahead'));
+   //console.log('typeahead: ', $('.typeahead'));
 
    if( $('.typeahead').length ) {
 
@@ -30,7 +30,6 @@ $(function() {
             /*onClick: function (node, a, item, event) {
                console.log('onClick Typeahead item:', item);
                console.log(item.display + ' Selected!');
-               formSubmitted = true;
                console.log('onClick Typeahead: formSubmitted: ', formSubmitted);
             },*/
             /*onSubmit: function(node, form, items, event) {

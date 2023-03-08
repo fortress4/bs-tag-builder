@@ -1,4 +1,4 @@
-# Bootstrap TagBuilder
+# Bootstrap TagListBuilder
 
 Inspired by [thebigtank's](https://github.com/thebigtank) ["tags builder with jquery"](https://github.com/thebigtank/tags-builder-with-jquery) tutorial.
 
@@ -12,7 +12,7 @@ Dependencies:
 
 ** The jQuery Typeaahead Search library is only required if using the Typeahead option
 
-View the [Demo](https://fortress4.github.io/bs-tag-builder/) page.
+View the [Demo](https://fortress4.github.io/tag-list-builder/) page.
 
 Warning: This is a work in progress.
 
@@ -22,7 +22,7 @@ Options:
   * Requires:
     * Additional HTML around the form-control input
     * jQuery Typeaahead Search js library
-    * Additional JS/Ajax data call (see tag-builder-typeahead.js)
+    * Additional JS/Ajax data call (see tag-list-builder-typeahead.js)
 
 
 

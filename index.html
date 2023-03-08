@@ -1,218 +1,217 @@
+
+
+
 <!DOCTYPE html>
 <head>
-   <meta charset="utf-8">
-   <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
-   <meta content="" name="description">
-   <meta content="" name="author">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="images/favicon.ico">
+
+    <title>Bootstrap TagListBuilder</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css" integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-typeahead@2.11.1/dist/jquery.typeahead.min.css" integrity="sha256-v9xSYLU+r7kTI8gK714wGSObfWX0rrcWFZvPil8qZEw=" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/tag-list-builder.css">
+    <link rel="stylesheet" href="css/tag-list-builder-typeahead.css">
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <div class="header clearfix">
+        <nav>
+
+        </nav>
+
+      </div>
+
+      <div class="jumbotron">
+         <h1 class="display-3">Bootstrap TagListBuilder</h1>
 
 
-   <title>Bootstrap TagBuilder (TagListBuilder)</title>
 
-   <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"
-         integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA=="
-         referrerpolicy="no-referrer" rel="stylesheet"/>
-
-   <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
-         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
-         referrerpolicy="no-referrer" rel="stylesheet"/>
-
-   <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/jquery-typeahead@2.11.1/dist/jquery.typeahead.min.css"
-         integrity="sha256-v9xSYLU+r7kTI8gK714wGSObfWX0rrcWFZvPil8qZEw=" rel="stylesheet">
-
-   <link href="css/tag-builder.css" rel="stylesheet">
-   <link href="css/tag-builder-typeahead.css" rel="stylesheet">
-</head>
-
-<body>
-
-<div class="container">
-
-   <div class="header clearfix">
-      <nav>
-
-      </nav>
-
-   </div>
-
-   <div class="jumbotron">
-      <h1 class="display-3">Bootstrap TagBuilder</h1>
+      </div>
 
 
-   </div>
+      <div class="row">
+         <div class="col-lg-6">
+
+            <div class="card border border-2 rounded-3 m-2 p-4">
+
+               <div class="card-body">
+                  <h5 class="card-title">Tag Sorting</h5>
 
 
-   <div class="row">
-      <div class="col-lg-6">
-
-         <div class="card border border-2 rounded-3 m-2 p-4">
-
-            <div class="card-body">
-               <h5 class="card-title">Tag Builder Field (Tag Sorting)</h5>
 
 
-               <div class="tagBuilderWrapper ">
-                  <label class="tagBuilderFieldLabel "></label>
-                  <input autocomplete="off" class="tagBuilderAdd form-control-sm " id="exampleOne_add" name="exampleOne_add"
-                         placeholder="Add a Tag" type="text">
+      <div class="tagBuilderWrapper ">
+         <label class="tagBuilderFieldLabel "></label>
+         <input type="text" id="exampleOne_add" name="exampleOne_add" class="tagBuilderAdd form-control-sm " placeholder="Add a Tag" autocomplete="off">
 
-                  <div class="tagBuilderMsg" id="exampleOne_msg">Add Tags</div>
-                  <div class="tagBuilderBin" id="exampleOne_bin"></div>
-                  <input class="tagBuilder" data-autocomplete=0 data-fieldvalue="" data-readonly="0" data-required="0"
-                         data-tagCase="capitalize"
-                         data-tagsorting="1"
-                         data-validatetags=""
-                         id="exampleOne"
-                         name="exampleOne"
+      <div id="exampleOne_msg" class="tagBuilderMsg">Add Tags</div>
+         <div id="exampleOne_bin" class="tagBuilderBin"></div>
+         <input type="hidden" id="exampleOne" name="exampleOne" class="tagBuilder" value=""
+            data-fieldvalue=""
+            data-required="0"
+            data-readonly="0"
+            data-autocomplete=0
+            data-tagCase="capitalize"
 
-                         type="hidden"
-                         value="">
+            data-tagsorting="1"
+            data-validatetags="">
+
+
+      </div>
+
 
 
                </div>
+            </div>
+
+         </div>
+         <div class="col-lg-6">
+
+            <div class="card border border-2 rounded-3 m-2 p-4">
+
+                  <h5 class="card-title">No Tag Sorting</h5>
+
+
+
+      <div class="tagBuilderWrapper ">
+         <label class="tagBuilderFieldLabel "></label>
+         <input type="text" id="exampleTwo_add" name="exampleTwo_add" class="tagBuilderAdd form-control-sm " placeholder="Add a Tag" autocomplete="off">
+
+      <div id="exampleTwo_msg" class="tagBuilderMsg">Add Tags</div>
+         <div id="exampleTwo_bin" class="tagBuilderBin"></div>
+         <input type="hidden" id="exampleTwo" name="exampleTwo" class="tagBuilder" value=""
+            data-fieldvalue=""
+            data-required="0"
+            data-readonly="0"
+            data-autocomplete=0
+            data-tagCase="capitalize"
+
+            data-tagsorting="0"
+            data-validatetags="">
+
+
+      </div>
+
+
 
 
             </div>
-         </div>
-
-      </div>
-      <div class="col-lg-6">
-
-         <div class="card border border-2 rounded-3 m-2 p-4">
-
-            <h5 class="card-title">Tag Builder Field (No Tag Sorting)</h5>
-
-
-            <div class="tagBuilderWrapper ">
-               <label class="tagBuilderFieldLabel "></label>
-               <input autocomplete="off" class="tagBuilderAdd form-control-sm " id="exampleTwo_add" name="exampleTwo_add"
-                      placeholder="Add a Tag" type="text">
-
-               <div class="tagBuilderMsg" id="exampleTwo_msg">Add Tags</div>
-               <div class="tagBuilderBin" id="exampleTwo_bin"></div>
-               <input class="tagBuilder" data-autocomplete=0 data-fieldvalue="" data-readonly="0" data-required="0"
-                      data-tagCase="capitalize"
-                      data-tagsorting="0"
-                      data-validatetags=""
-                      id="exampleTwo"
-                      name="exampleTwo"
-
-                      type="hidden"
-                      value="">
-
-
-            </div>
-
 
          </div>
-
       </div>
-   </div>
 
 
-   <div class="row">
-      <div class="col-lg-6">
+      <div class="row">
+         <div class="col-lg-6">
 
-         <div class="card border border-2 rounded-3 m-2 p-4">
+            <div class="card border border-2 rounded-3 m-2 p-4">
 
-            <div class="card-body">
-               <h5 class="card-title">Tag Builder Field with Typeahead (Tag Sorting)</h5>
+               <div class="card-body">
+                  <h5 class="card-title">Typeahead with Tag Sorting</h5>
 
 
-               <div class="tagBuilderWrapper ">
-                  <label class="tagBuilderFieldLabel "></label>
-                  <div class="typeahead__container">
-                     <div class="typeahead__field">
-                        <div class="typeahead__query">
-                           <input autocomplete="off" class="tagBuilderAdd typeahead " id="exampleThree_add"
-                                  name="exampleThree_add" placeholder="Add a Tag" type="text">
-                        </div>
 
-                     </div>
-                  </div>
 
-                  <div class="tagBuilderMsg" id="exampleThree_msg">Add Tags</div>
-                  <div class="tagBuilderBin" id="exampleThree_bin"></div>
-                  <input class="tagBuilder d-none" data-autocomplete=0 data-fieldvalue="" data-readonly="0" data-required="0"
-                         data-tagCase="capitalize"
-                         data-tagsorting="1"
-                         data-validatetags=""
-                         id="exampleThree"
-                         name="exampleThree"
-
-                         type="text"
-                         value="">
+      <div class="tagBuilderWrapper ">
+         <label class="tagBuilderFieldLabel "></label>
+         <div class="typeahead__container">
+           <div class="typeahead__field">
+               <div class="typeahead__query">
+                   <input type="text" id="exampleThree_add" name="exampleThree_add" class="tagBuilderAdd typeahead " placeholder="Add a Tag" autocomplete="off">
                </div>
 
-
-            </div>
+           </div>
          </div>
 
+         <div id="exampleThree_msg" class="tagBuilderMsg">Add Tags</div>
+         <div id="exampleThree_bin" class="tagBuilderBin"></div>
+         <input type="text" id="exampleThree" name="exampleThree" class="tagBuilder d-none" value=""
+            data-fieldvalue=""
+            data-required="0"
+            data-readonly="0"
+            data-autocomplete=0
+            data-tagCase="capitalize"
+
+            data-tagsorting="1"
+            data-validatetags="">
       </div>
-      <div class="col-lg-6">
-
-         <div class="card border border-2 rounded-3 m-2 p-4">
-
-            <h5 class="card-title">Tag Builder Field with Typeahead (No Tag Sorting)</h5>
 
 
-            <div class="tagBuilderWrapper ">
-               <label class="tagBuilderFieldLabel "></label>
-               <div class="typeahead__container">
-                  <div class="typeahead__field">
-                     <div class="typeahead__query">
-                        <input autocomplete="off" class="tagBuilderAdd typeahead " id="exampleFour_add" name="exampleFour_add"
-                               placeholder="Add a Tag" type="text">
-                     </div>
 
-                  </div>
+               </div>
+            </div>
+
+         </div>
+         <div class="col-lg-6">
+
+            <div class="card border border-2 rounded-3 m-2 p-4">
+
+                  <h5 class="card-title">Typeahead with No Tag Sorting</h5>
+
+
+
+
+      <div class="tagBuilderWrapper ">
+         <label class="tagBuilderFieldLabel "></label>
+         <div class="typeahead__container">
+           <div class="typeahead__field">
+               <div class="typeahead__query">
+                   <input type="text" id="exampleFour_add" name="exampleFour_add" class="tagBuilderAdd typeahead " placeholder="Add a Tag" autocomplete="off">
                </div>
 
-               <div class="tagBuilderMsg" id="exampleFour_msg">Add Tags</div>
-               <div class="tagBuilderBin" id="exampleFour_bin"></div>
-               <input class="tagBuilder d-none" data-autocomplete=0 data-fieldvalue="" data-readonly="0" data-required="0"
-                      data-tagCase="lowercase"
-                      data-tagsorting="0"
-                      data-validatetags=""
-                      id="exampleFour"
-                      name="exampleFour"
-
-                      type="text"
-                      value="">
-            </div>
-
-
+           </div>
          </div>
 
+         <div id="exampleFour_msg" class="tagBuilderMsg">Add Tags</div>
+         <div id="exampleFour_bin" class="tagBuilderBin"></div>
+         <input type="text" id="exampleFour" name="exampleFour" class="tagBuilder d-none" value=""
+            data-fieldvalue=""
+            data-required="0"
+            data-readonly="0"
+            data-autocomplete=0
+            data-tagCase="lowercase"
+
+            data-tagsorting="0"
+            data-validatetags="">
       </div>
-   </div>
 
 
-   <footer class="footer">
-      <p>&copy; 2023 Bootstrap TagBuilder (TagListBuilder)</p>
-   </footer>
 
-</div> <!-- /container -->
+            </div>
 
-<script crossorigin="anonymous"
-        integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
-        referrerpolicy="no-referrer" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+         </div>
+      </div>
 
-<script crossorigin="anonymous"
-        integrity="sha512-i9cEfJwUwViEPFKdC1enz4ZRGBj8YQo6QByFTF92YXHi7waCqyexvRD75S5NVTsSiTv7rKWqG9Y5eFxmRsOn0A=="
-        referrerpolicy="no-referrer" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
 
-<script crossorigin="anonymous"
-        integrity="sha512-3btxfhQfasdVcv1dKYZph5P7jFeeLRcF1gDVzFA+k9AiwwhB1MNI7O58zCK0uVItuMHNDR5pMoF2nqlCGzUwZQ=="
-        referrerpolicy="no-referrer" src="https://cdnjs.cloudflare.com/ajax/libs/html5sortable/0.13.3/html5sortable.min.js"></script>
 
-<script crossorigin="anonymous"
-        integrity="sha512-oVbWSv2O4y1UzvExJMHaHcaib4wsBMS5tEP3/YkMP6GmkwRJAa79Jwsv+Y/w7w2Vb/98/Xhvck10LyJweB8Jsw=="
-        referrerpolicy="no-referrer" src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/6.0.0/bootbox.min.js"></script>
+      <footer class="footer">
+         <p>&copy; 2023 Bootstrap TagListBuilder</p>
+      </footer>
 
-<script crossorigin="anonymous"
-        integrity="sha256-HQvzpKdugcSoVwponjVtzqQ+dpijVZYbuvodUpcGAIs=" src="https://cdn.jsdelivr.net/npm/jquery-typeahead@2.11.1/dist/jquery.typeahead.min.js"></script>
+    </div> <!-- /container -->
 
-<script src="js/tag-builder.js"></script>
-<script src="js/tag-builder-typeahead.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.bundle.min.js" integrity="sha512-i9cEfJwUwViEPFKdC1enz4ZRGBj8YQo6QByFTF92YXHi7waCqyexvRD75S5NVTsSiTv7rKWqG9Y5eFxmRsOn0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5sortable/0.13.3/html5sortable.min.js" integrity="sha512-3btxfhQfasdVcv1dKYZph5P7jFeeLRcF1gDVzFA+k9AiwwhB1MNI7O58zCK0uVItuMHNDR5pMoF2nqlCGzUwZQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/6.0.0/bootbox.min.js" integrity="sha512-oVbWSv2O4y1UzvExJMHaHcaib4wsBMS5tEP3/YkMP6GmkwRJAa79Jwsv+Y/w7w2Vb/98/Xhvck10LyJweB8Jsw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery-typeahead@2.11.1/dist/jquery.typeahead.min.js" integrity="sha256-HQvzpKdugcSoVwponjVtzqQ+dpijVZYbuvodUpcGAIs=" crossorigin="anonymous"></script>
+
+    <script src="js/tag-list-builder.js"></script>
+    <script src="js/tag-list-builder-typeahead.js"></script>
 </body>
 </html>

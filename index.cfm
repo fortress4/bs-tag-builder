@@ -1,10 +1,9 @@
+<!---
+   index.cfm
+--->
 <cfscript>
    controlsCFC = createObject("component","components.controls");
-
-
-
 </cfscript>
-
 
 <!DOCTYPE html>
 <head>
@@ -12,9 +11,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <!---<link rel="icon" href="../../../../favicon.ico">--->
+    <link rel="icon" href="images/favicon.ico">
 
-    <title>Bootstrap TagBuilder (TagListBuilder)</title>
+    <title>Bootstrap TagListBuilder</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css" integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -22,8 +21,8 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-typeahead@2.11.1/dist/jquery.typeahead.min.css" integrity="sha256-v9xSYLU+r7kTI8gK714wGSObfWX0rrcWFZvPil8qZEw=" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="css/tag-builder.css">
-    <link rel="stylesheet" href="css/tag-builder-typeahead.css">
+    <link rel="stylesheet" href="css/tag-list-builder.css">
+    <link rel="stylesheet" href="css/tag-list-builder-typeahead.css">
   </head>
 
   <body>
@@ -48,7 +47,7 @@
       </div>
 
       <div class="jumbotron">
-         <h1 class="display-3">Bootstrap TagBuilder</h1>
+         <h1 class="display-3">Bootstrap TagListBuilder</h1>
          <!---<h2 class="display-6">(TagListBuilder)</h2>--->
         <!---<p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>--->
         <!---<p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>--->
@@ -61,7 +60,7 @@
             <div class="card border border-2 rounded-3 m-2 p-4">
 
                <div class="card-body">
-                  <h5 class="card-title">Tag Builder Field (Tag Sorting)</h5>
+                  <h5 class="card-title">Tag Sorting</h5>
 
                   <!--- Start: TagBuilder Field and Bin --->
                   <cfscript>
@@ -109,7 +108,7 @@
 
             <div class="card border border-2 rounded-3 m-2 p-4">
 
-                  <h5 class="card-title">Tag Builder Field (No Tag Sorting)</h5>
+                  <h5 class="card-title">No Tag Sorting</h5>
                   <!--- Start: TagBuilder Field and Bin --->
                   <cfscript>
                      fieldArgs = {
@@ -161,7 +160,7 @@
             <div class="card border border-2 rounded-3 m-2 p-4">
 
                <div class="card-body">
-                  <h5 class="card-title">Tag Builder Field with Typeahead (Tag Sorting)</h5>
+                  <h5 class="card-title">Typeahead with Tag Sorting</h5>
 
                   <!--- Start: TagBuilder Field and Bin --->
                   <cfscript>
@@ -194,7 +193,7 @@
 
             <div class="card border border-2 rounded-3 m-2 p-4">
 
-                  <h5 class="card-title">Tag Builder Field with Typeahead (No Tag Sorting)</h5>
+                  <h5 class="card-title">Typeahead with No Tag Sorting</h5>
 
                   <!--- Start: TagBuilder Field and Bin --->
                   <cfscript>
@@ -247,7 +246,7 @@
       </div>--->
 
       <footer class="footer">
-         <cfoutput><p>&copy; #Year(Now())# Bootstrap TagBuilder (TagListBuilder)</p></cfoutput>
+         <cfoutput><p>&copy; #Year(Now())# Bootstrap TagListBuilder</p></cfoutput>
       </footer>
 
     </div> <!-- /container -->
@@ -262,7 +261,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/jquery-typeahead@2.11.1/dist/jquery.typeahead.min.js" integrity="sha256-HQvzpKdugcSoVwponjVtzqQ+dpijVZYbuvodUpcGAIs=" crossorigin="anonymous"></script>
 
-    <script src="js/tag-builder.js"></script>
-    <script src="js/tag-builder-typeahead.js"></script>
+    <script src="js/tag-list-builder.js"></script>
+    <script src="js/tag-list-builder-typeahead.js"></script>
 </body>
 </html>

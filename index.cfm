@@ -78,7 +78,8 @@
                            // validateTagsSrc = 'resourceList',
                            // validateTagsFilter = '',
                         addFieldClass = '',
-                        messageText = 'Add Tags'
+                        messageText = 'Add Tags',
+                        outputConfig = true   // TODO add to controls
                      };
                      //useLowerCaseTags = false,
                      //WriteDump(var=fieldArgs,expand=false);
@@ -119,13 +120,15 @@
                         placeholder = "Add a Tag",
                         fieldValue = "",
                            // autoComplete = false,
-                        tagCase = "capitalize",
                         enableTagSorting = false,
+                        tagCase = "",
+                        tagClass = 'bg-danger',
                            // validateTags = 'global',  // global/local/custom
                            // validateTagsSrc = 'resourceList',
                            // validateTagsFilter = '',
                         addFieldClass = '',
-                        messageText = 'Add Tags'
+                        messageText = 'Add Tags',
+                        outputConfig = true   // TODO add to controls
                      };
                      //useLowerCaseTags = false,
                      //WriteDump(var=fieldArgs,expand=false);
@@ -147,7 +150,6 @@
                         data-validatetags="global">
                   </div>--->
                   <!--- End: TagBuilder Field and Bin --->
-
             </div>
 
          </div>
@@ -171,13 +173,15 @@
                         readonly = false,
                         placeholder = "Add a Tag",
                         fieldValue = "",
-                        tagCase = "capitalize",
                         enableTagSorting = true,
+                        tagCase = "upper",
+                        tagClass = 'bg-info',
                            // validateTags = 'global',  // global/local/custom
                            // validateTagsSrc = 'resourceList',
                            // validateTagsFilter = '',
                         addFieldClass = '',
-                        messageText = 'Add Tags'
+                        messageText = 'Add Tags',
+                        outputConfig = true   // TODO add to controls
                      };
                      //useLowerCaseTags = false,
                      //WriteDump(var=fieldArgs,expand=false);
@@ -204,13 +208,15 @@
                         readonly = false,
                         placeholder = "Add a Tag",
                         fieldValue = "",
-                        tagCase = "lowercase",
                         enableTagSorting = false,
+                        tagCase = "lower",
+                        tagClass = 'bg-warning',
                            // validateTags = 'global',  // global/local/custom
                            // validateTagsSrc = 'resourceList',
                            // validateTagsFilter = '',
                         addFieldClass = '',
-                        messageText = 'Add Tags'
+                        messageText = 'Add Tags',
+                        outputConfig = true   // TODO add to controls
                      };
                   </cfscript>
                   <cfoutput>#controlsCFC.renderTagListTypeAheadInputField(argumentCollection=fieldArgs)#</cfoutput>

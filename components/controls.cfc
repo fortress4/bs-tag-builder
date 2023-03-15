@@ -18,12 +18,15 @@
       <!---<cfargument name="autoComplete" type="boolean" required="false" default="false">--->
       <cfargument name="fieldValue" type="string" required="false" default="">
       <cfargument name="readonly" type="boolean" required="false" default="false">
+      <cfargument name="enableTagSorting" type="boolean" required="false" default="false" hint="enforce tag validation">
       <cfargument name="tagCase" type="string" required="false" default="" hint="force tags case: lowercase,uppercase,capitalize">
       <!---<cfargument name="useLowerCaseTags" type="boolean" required="false" default="false" hint="force lower case tags">--->
-      <cfargument name="enableTagSorting" type="boolean" required="false" default="false" hint="enforce tag validation">
+      <cfargument name="tagClass" type="string" required="false" default="" hint="">
       <cfargument name="validateTags" type="string" required="false" default="" hint="enforce tag validation">
       <cfargument name="addFieldClass" type="string" required="false" default="">
       <cfargument name="messageText" type="string" required="false" default="No Tags Added!">
+
+      <cfargument name="outputConfig" type="boolean" required="false" default="false">
 
       <cfscript>
          var req = arguments.required;
@@ -59,9 +62,10 @@
             data-required="#req#"
             data-readonly="#arguments.readonly#"
             data-autocomplete=0
-            data-tagCase="#arguments.tagCase#"
+            data-tagcase="#arguments.tagCase#"
             <!---data-lowercasetags="#arguments.useLowerCaseTags#"--->
             data-tagsorting="#arguments.enableTagSorting#"
+            <cfif LEN(TRIM(arguments.tagClass))>data-tagclass="#arguments.tagClass#"</cfif>
             data-validatetags="#arguments.validateTags#">
 
          <!---<div class="row d-flex">
@@ -71,6 +75,10 @@
             </div>
          </div>--->
       </div>
+      <cfif arguments.outputConfig>
+         <cfset arguments.typeahead = false>
+         #renderControlConfigOptions(argumentCollection=arguments)#
+      </cfif>
    </cffunction>
 
     <!---
@@ -88,12 +96,15 @@
       <cfargument name="autocomplete" type="boolean" required="false" default="true">
       <cfargument name="fieldValue" type="string" required="false" default="">
       <cfargument name="readonly" type="boolean" required="false" default="false">
-      <cfargument name="tagCase" type="string" required="false" default="" hint="force tags case: lowercase,uppercase,capitalize">
-      <!---<cfargument name="useLowerCaseTags" type="boolean" required="false" default="false" hint="force lower case tags">--->
       <cfargument name="enableTagSorting" type="boolean" required="false" default="false" hint="enforce tag validation">
+      <cfargument name="tagCase" type="string" required="false" default="" hint="force tags case: lower,upper,capitalize">
+      <!---<cfargument name="useLowerCaseTags" type="boolean" required="false" default="false" hint="force lower case tags">--->
+      <cfargument name="tagClass" type="string" required="false" default="" hint="">
       <cfargument name="validateTags" type="string" required="false" default="" hint="enforce tag validation">
       <cfargument name="addFieldClass" type="string" required="false" default="">
       <cfargument name="messageText" type="string" required="false" default="No Tags Added!">
+
+      <cfargument name="outputConfig" type="boolean" required="false" default="false">
 
       <cfscript>
          var req = arguments.required;
@@ -113,6 +124,7 @@
          req = ( req ) ? 1 : 0;
          arguments.readonly = ( arguments.readonly ) ? 1 : 0;
          arguments.enableTagSorting = ( arguments.enableTagSorting ) ? 1 : 0;
+
          // arguments.autocomplete = ( arguments.autocomplete ) ? 1 : 0;
          //arguments.useLowerCaseTags = ( arguments.useLowerCaseTags ) ? 1 : 0;
          //arguments.validateTags = ( arguments.validateTags ) ? 1 : 0;
@@ -140,10 +152,35 @@
             data-required="#req#"
             data-readonly="#arguments.readonly#"
             data-autocomplete=0
-            data-tagCase="#arguments.tagCase#"
+            data-tagcase="#arguments.tagCase#"
             <!---data-lowercasetags="#arguments.useLowerCaseTags#"--->
             data-tagsorting="#arguments.enableTagSorting#"
+            <cfif LEN(TRIM(arguments.tagClass))>data-tagclass="#arguments.tagClass#"</cfif>
             data-validatetags="#arguments.validateTags#">
+      </div>
+
+      <cfif arguments.outputConfig>
+         <cfset arguments.typeahead = true>
+         #renderControlConfigOptions(argumentCollection=arguments)#
+      </cfif>
+   </cffunction>
+
+   <cffunction name="renderControlConfigOptions" access="public" output="yes" returntype="void">
+      <cfargument name="fieldID" type="string" required="true">
+      <cfargument name="typeahead" type="boolean" required="false" default="true">
+      <cfargument name="enableTagSorting" type="boolean" required="false" default="false" hint="enforce tag validation">
+      <cfargument name="tagCase" type="string" required="false" default="" hint="force tags case: lower,upper,capitalize">
+      <cfargument name="tagClass" type="string" required="false" default="" hint="">
+
+      <div id="#arguments.fieldID#_config" class="small">
+         <hr class="mt-4">
+         <div>Configured Options:</div>
+         <ul>
+            <li>TypeAhead: #YesNoFormat(arguments.typeahead)#</li>
+            <li>Enable Tag Sorting: #YesNoFormat(arguments.enableTagSorting)#</li>
+             <cfif LEN(TRIM(arguments.tagCase))><li>Tag Case: #arguments.tagCase#</li></cfif>
+            <cfif LEN(TRIM(arguments.tagClass))><li>Tag Class: #arguments.tagClass#</li></cfif>
+         </ul>
       </div>
    </cffunction>
 

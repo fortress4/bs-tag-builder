@@ -184,7 +184,9 @@
             <li>Enable Tag Sorting: #YesNoFormat(arguments.enableTagSorting)#</li>
             <cfif LEN(TRIM(arguments.tagCase))><li>Tag Case: #arguments.tagCase#</li></cfif>
             <cfif LEN(TRIM(arguments.tagClass))><li>Tag Class: #arguments.tagClass#</li></cfif>
-            <cfif LEN(TRIM(arguments.tagHoverClass))><li>Tag Hover Class: #arguments.TagHoverClass#</li></cfif>
+            <cfif arguments.enableTagSorting>
+               <cfif LEN(TRIM(arguments.tagHoverClass))><li>Tag Hover Class: #arguments.TagHoverClass#</li></cfif>
+            </cfif>
          </ul>
       </div>
    </cffunction>

@@ -309,7 +309,8 @@ function tb_renderTag(field,container,tagText) {  // ,sortTags,tagColor
    tb_tagCase(field);
    tb_tagClass(field);
    //console.log("tagSorting: ", tbConfig.tagSorting);
-   //console.log("tagCase: ", tbConfig.tagCase);
+
+   console.log("tagCase: ", tbConfig.tagCase);
 
    if ( tagText.length > 0 ) {
       if ( tbConfig.tagCase === 'lower' )
@@ -319,7 +320,9 @@ function tb_renderTag(field,container,tagText) {  // ,sortTags,tagColor
       else if ( tbConfig.tagCase === 'capitalize' )
          tagText = tb_capitalizeStr(tagText);
    }
-   //console.log('tagText: ', tagText);
+
+   console.log("tagCase: ", tbConfig.tagCase);
+   console.log('tagText: ', tagText);
 
    if ( tbConfig.tagSorting == 1 )
    {
@@ -367,12 +370,14 @@ function tb_tagCase(tb_field) {
       if ( tagCase === 'lower' || tagCase === 'upper' || tagCase === 'capitalize' )
          tbConfig.tagCase = tagCase;
    }
+
+   console.log('tbConfig.tagCase: ',tbConfig.tagCase);
 }
 
 function tb_tagClass(tb_field) {
    var field = $(tb_field);
 
-   tbConfig.tagCase = 'bg-primary';
+   tbConfig.tagClass = 'bg-primary';
    if ( field.data('tagclass') )
       tbConfig.tagClass = field.data('tagclass');
 }

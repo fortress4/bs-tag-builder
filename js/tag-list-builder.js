@@ -16,8 +16,8 @@ var tbConfig = {
          tagHoverClass: 'bg-warning'
       }
    };
-console.log('tbConfig: ', tbConfig);
-console.log('tbConfig.default: ', tbConfig.default);
+// console.log('tbConfig: ', tbConfig);
+// console.log('tbConfig.default: ', tbConfig.default);
 
 $(function() {
 
@@ -27,54 +27,13 @@ $(function() {
 
       var tb_field = $(obj);
       var tb_field_id = tb_field.attr('id');
+      var tb_wrapper = tb_field.parent('.tagBuilderWrapper');
+      var tb_bin = tb_wrapper.find('.tagBuilderBin');
+      var tb_msg = tb_wrapper.find('.tagBuilderMsg');
+      var tb_add_field = tb_wrapper.find('.tagBuilderAdd');
 
       tb_initConfig(tb_field);
       tags_array[tb_field_id] = [];
-
-      // var tb_sortTags = tb_field.data('tagsorting');
-      //var tb_autoComplete = tb_field.data('autocomplete');
-      //var tb_tagCase = tb_field.data('tagcase');
-      //var tb_lowerCase = tb_field.data('lowercasetags');
-
-      //tbConfig.tagSorting = tb_field.data('tagsorting');
-      //tbConfig.autoComplete = tb_field.data('autocomplete');
-      //tbConfig.tagCase = tb_field.data('tagcase');
-
-      // Get the set config options
-      //tb_autoComplete(tb_field);
-      //tb_tagSorting(tb_field);
-      //console.log('autoComplete: ',tbConfig.autoComplete);
-      // console.log('tagSorting 1: ',tbConfig.tagSorting);
-
-      // console.log('tb_field: ', i, obj);
-      // console.log('tb_field_id: ', tb_field_id);
-      // console.log('tb_sortTags: ', tb_sortTags);
-      // console.log('tags_array: ', tb_field_id, tags_array[tb_field_id]);
-
-      //console.log('tb_autoComplete: ', tb_autoComplete);
-      //console.log('tb_tagCase: ', tb_tagCase);
-
-      var tb_wrapper = tb_field.parent('.tagBuilderWrapper');
-
-      var tb_bin = tb_wrapper.find('.tagBuilderBin');
-      // var tb_bin = tb_field.prevAll('.tagBuilderBin');
-      // var tb_bin_id = tb_bin.attr('id');
-
-      // console.log('tb_bin: ',tb_bin);
-      // console.log('tb_bin_id: ',tb_bin_id);
-
-      var tb_msg = tb_wrapper.find('.tagBuilderMsg');
-      //var tb_msg = tb_field.prevAll('.tagBuilderMsg');
-      //var tb_msg_id = tb_msg.attr('id');
-
-      // console.log('tb_msg: ',tb_msg);
-      // console.log('tb_msg_id: ',tb_msg_id);
-
-      var tb_add_field = tb_wrapper.find('.tagBuilderAdd');
-      //var tb_add_field_id = tb_add_field.attr('id');
-
-      // console.log('tb_add_field: ',tb_add_field);
-      // console.log('tb_add_field_id: ',tb_add_field_id);
 
       // Populate the tags field with the current values
       var fldValue = tb_field.data('fieldvalue');
@@ -125,7 +84,6 @@ $(function() {
 
       if ( tbConfig[tb_field_id].tagSorting == 1 )
       {
-         //tb_tagHoverClass(tb_field);
          //console.log('tbConfig.tagHoverClass',tbConfig.tagHoverClass);
 
          sortable(tb_bin, {
@@ -201,8 +159,8 @@ $(function() {
        var fldInput = fldWrapper.find('.tagBuilder');
        var fldInputType = fldInput.attr('type');
 
-       console.log('fldInput: ',fldInput);
-       console.log('fldInputType: ',fldInputType);
+       // console.log('fldInput: ',fldInput);
+       // console.log('fldInputType: ',fldInputType);
 
        if ( fldInputType == 'hidden' ) {
           fldInput.attr('type','text');
@@ -217,55 +175,24 @@ $(function() {
          fldBtn.find('span').text('Show Raw Tag List');
        }
    });
-
-   /*$('.tagBuilderShowBtn').click(function() {
-       var fldBtn = $(this);
-       var fldWrapper = fldBtn.parents('.tagBuilderWrapper');
-       var fldInput = fldWrapper.find('.tagBuilder');
-
-       if ( fldInput.hasClass('d-none') ) {
-          fldInput.removeClass('d-none');
-          fldBtn.find('.tagBuilderShowEye').removeClass('fa-eye').addClass('fa-eye-slash');
-          fldBtn.find('.tagBuilderShowArrow').removeClass('fa-caret-down').addClass('fa-caret-up');
-          fldBtn.find('span').text('Hide Raw Tag List');
-       }
-       else {
-         fldInput.addClass('d-none');
-         fldBtn.find('.tagBuilderShowEye').removeClass('fa-eye-slash').addClass('fa-eye');
-         fldBtn.find('.tagBuilderShowArrow').removeClass('fa-caret-up').addClass('fa-caret-down');
-         fldBtn.find('span').text('Show Raw Tag List');
-       }
-   });*/
-
 });
 
 function tb_addTag(field,container,msgdiv,addfield,event) {
 
    // console.log('ADD TAG: event.keyCode:', event.keyCode);
-   //console.log('field: ', field);
+   // console.log('field: ', field);
    // console.log('container: ', container);
    // console.log('msgdiv: ', msgdiv);
    // console.log('addfield: ', addfield);
 
    var fldID = field.attr('id');
-   // var sort_tags = field.data('tagsorting');
-   // var autocomplete = field.data('autocomplete');
-   // var tagCase = field.data('tagcase');
-
-   //tbConfig.tagSorting = field.data('tagsorting');
-   //tbConfig.autoComplete = field.data('autocomplete');
-   //tbConfig.tagCase = field.data('tagcase');
 
    // Get the set config options
    tb_autoComplete(field);
    tb_tagSorting(field);
-   //console.log('autoComplete: ',tbConfig.autoComplete);
-   //console.log('tagSorting: ',tbConfig.tagSorting);
 
    var new_tag = addfield.val().trim();
-
    //console.log('new_tag: ', new_tag);
-//debugger;
 
    if ( event.keyCode == 13 ) {
       event.preventDefault();
@@ -338,7 +265,7 @@ function tb_renderTag(field,container,tagText) {  // ,sortTags,tagColor
    tb_tagClass(field);
    //console.log("tagSorting: ", tbConfig[fldID].tagSorting);
 
-   console.log("tagCase: ", tbConfig[fldID].tagCase);
+   // console.log("tagCase: ", tbConfig[fldID].tagCase);
 
    if ( tagText.length > 0 ) {
       if ( tbConfig[fldID].tagCase === 'lower' )
@@ -349,8 +276,8 @@ function tb_renderTag(field,container,tagText) {  // ,sortTags,tagColor
          tagText = tb_capitalizeStr(tagText);
    }
 
-   console.log("tagCase: ", tbConfig[fldID].tagCase);
-   console.log('tagText: ', tagText);
+   // console.log("tagCase: ", tbConfig[fldID].tagCase);
+   // console.log('tagText: ', tagText);
 
    if ( tbConfig[fldID].tagSorting == 1 )
    {
@@ -389,14 +316,11 @@ function tb_autoComplete(field_obj) {
    var field = $(field_obj);
    var field_id = field.attr('id');
 
-   console.log('tbConfig 1: ', tbConfig);
-   console.log('tbConfig.default 1: ', tbConfig.default);
-
    tbConfig[field_id].autoComplete = tbConfig.default.autoComplete;
    if ( field.data('autocomplete') )
       tbConfig[field_id].autoComplete = field.data('autocomplete');
 
-   console.log('tbConfig['+field_id+'].autoComplete: ',tbConfig[field_id].autoComplete);
+   // console.log('tbConfig['+field_id+'].autoComplete: ',tbConfig[field_id].autoComplete);
 }
 
 function tb_tagSorting(field_obj) {
@@ -407,7 +331,7 @@ function tb_tagSorting(field_obj) {
    if ( field.data('tagsorting') )
       tbConfig[field_id].tagSorting = field.data('tagsorting');
 
-   console.log('tbConfig['+field_id+'].tagSorting: ',tbConfig[field_id].tagSorting);
+   // console.log('tbConfig['+field_id+'].tagSorting: ',tbConfig[field_id].tagSorting);
 }
 
 function tb_tagCase(field_obj) {
@@ -421,7 +345,7 @@ function tb_tagCase(field_obj) {
          tbConfig[field_id].tagCase = tagCase;
    }
 
-  console.log('tbConfig['+field_id+'].tagCase: ',tbConfig[field_id].tagCase);
+  // console.log('tbConfig['+field_id+'].tagCase: ',tbConfig[field_id].tagCase);
 }
 
 function tb_tagClass(field_obj) {
@@ -432,7 +356,7 @@ function tb_tagClass(field_obj) {
    if ( field.data('tagclass') )
       tbConfig[field_id].tagClass = field.data('tagclass');
 
-   console.log('tbConfig['+field_id+'].tagClass: ',tbConfig[field_id].tagClass);
+   // console.log('tbConfig['+field_id+'].tagClass: ',tbConfig[field_id].tagClass);
 }
 
 function tb_tagHoverClass(field_obj) {
@@ -443,7 +367,7 @@ function tb_tagHoverClass(field_obj) {
    if ( field.data('taghoverclass') )
       tbConfig[field_id].tagHoverClass = field.data('taghoverclass');
 
-   console.log('tbConfig['+field_id+'].tagHoverClass: ',tbConfig[field_id].tagHoverClass);
+   // console.log('tbConfig['+field_id+'].tagHoverClass: ',tbConfig[field_id].tagHoverClass);
 }
 
 /*function tb_addTagItem(field,data) {

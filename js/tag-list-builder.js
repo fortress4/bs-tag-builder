@@ -4,15 +4,15 @@
 
 // declare variable to hold the value from input field
 var tags_array = {};
-var tagBuilderDebug = 1;
+var tagBuilderDebug = 0;
 
 var tbConfig = {
       tagSorting: 0,
       autoComplete: 0,
       tagCase: '',
-      tagClass: 'bg-primary'
-    };
-
+      tagClass: 'bg-primary',
+      tagHoverClass: 'bg-warning'
+   };
 // console.log('tbConfig: ', tbConfig);
 
 $(function() {
@@ -39,7 +39,7 @@ $(function() {
       tb_autoComplete(tb_field);
       tb_tagSorting(tb_field);
       //console.log('autoComplete: ',tbConfig.autoComplete);
-      //console.log('tagSorting: ',tbConfig.tagSorting);
+      console.log('tagSorting 1: ',tbConfig.tagSorting);
 
       // console.log('tb_field: ', i, obj);
       // console.log('tb_field_id: ', tb_field_id);
@@ -116,11 +116,16 @@ $(function() {
          }
       });
 
+      console.log('tbConfig.tagSorting',tbConfig.tagSorting);
+
       if ( tbConfig.tagSorting == 1 )
       {
+         tb_tagHoverClass(tb_field);
+         console.log('tbConfig.tagHoverClass',tbConfig.tagHoverClass);
+
          sortable(tb_bin, {
              orientation: 'horizontal',
-             hoverClass: 'bg-warning',
+             hoverClass:  tbConfig.tagHoverClass,
              placeholder: '<span class="tagBuilderPH badge rounded-pill bg-secondary p-2 me-2 mb-1" style="width:90px">&nbsp;</span>',
          });
 
@@ -145,6 +150,7 @@ $(function() {
 
                 var dataAttr = tb_field.data('fieldvalue');
                 console.log('data-fieldvalue: ',dataAttr);
+
                 var dataVal = tb_field.val();
                 console.log('hidden value: ',dataVal);
              }
@@ -184,7 +190,7 @@ $(function() {
          sortable(fldInput); // Refresh the Sortable Container
    });
 
-   /*$('.tagBuilderShowBtn').click(function() {
+   $('.tagBuilderShowBtn').click(function() {
        var fldBtn = $(this);
        var fldWrapper = fldBtn.parents('.tagBuilderWrapper');
        var fldInput = fldWrapper.find('.tagBuilder');
@@ -201,7 +207,7 @@ $(function() {
          fldBtn.find('.tagBuilderShowArrow').removeClass('fa-caret-up').addClass('fa-caret-down');
          fldBtn.find('span').text('Show Raw Tag List');
        }
-   });*/
+   });
 
 });
 
@@ -333,28 +339,29 @@ function tb_renderTag(field,container,tagText) {  // ,sortTags,tagColor
       sortable(container); // Refresh the Sortable Container
 }
 
-// tbConfig.tagSorting = tb_field.data('tagsorting');
-// tbConfig.autoComplete = tb_field.data('autocomplete');
-// tbConfig.tagCase = tb_field.data('tagcase');
-
 function tb_autoComplete(tb_field) {
    var field = $(tb_field);
 
+   tbConfig.autoComplete = 0;
    if ( field.data('autocomplete') )
       tbConfig.autoComplete = field.data('autocomplete');
 }
 
 function tb_tagSorting(tb_field) {
    var field = $(tb_field);
-   
+
+   tbConfig.tagSorting = 0;
    if ( field.data('tagsorting') )
       tbConfig.tagSorting = field.data('tagsorting');
+
+   // console.log('tbConfig.tagSorting',tbConfig.tagSorting);
 }
 
 function tb_tagCase(tb_field) {
    var field = $(tb_field);
    var tagCase = '';
-   
+
+   tbConfig.tagCase = '';
    if ( field.data('tagcase') ) {
       tagCase = field.data('tagcase');
       if ( tagCase === 'lower' || tagCase === 'upper' || tagCase === 'capitalize' )
@@ -365,8 +372,19 @@ function tb_tagCase(tb_field) {
 function tb_tagClass(tb_field) {
    var field = $(tb_field);
 
+   tbConfig.tagCase = 'bg-primary';
    if ( field.data('tagclass') )
       tbConfig.tagClass = field.data('tagclass');
+}
+
+function tb_tagHoverClass(tb_field) {
+   var field = $(tb_field);
+
+   tbConfig.tagCase = 'bg-warning';
+   if ( field.data('taghoverclass') )
+      tbConfig.tagHoverClass = field.data('taghoverclass');
+
+   // console.log('tbConfig.tagHoverClass',tbConfig.tagHoverClass);
 }
 
 /*function tb_addTagItem(field,data) {

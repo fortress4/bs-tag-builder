@@ -74,6 +74,8 @@
                            // autoComplete = false,
                         tagCase = "capitalize",
                         enableTagSorting = true,
+                        //tagClass = 'bg-danger',
+                        //tagHoverClass = 'bg-primary',
                            // validateTags = 'global',  // global/local/custom
                            // validateTagsSrc = 'resourceList',
                            // validateTagsFilter = '',
@@ -122,7 +124,8 @@
                            // autoComplete = false,
                         enableTagSorting = false,
                         tagCase = "",
-                        tagClass = 'bg-danger',
+                        tagClass = 'bg-primary',
+                        tagHoverClass = 'bg-danger',
                            // validateTags = 'global',  // global/local/custom
                            // validateTagsSrc = 'resourceList',
                            // validateTagsFilter = '',
@@ -176,11 +179,13 @@
                         enableTagSorting = true,
                         tagCase = "upper",
                         tagClass = 'bg-info',
+                        tagHoverClass = 'bg-danger',
                            // validateTags = 'global',  // global/local/custom
                            // validateTagsSrc = 'resourceList',
                            // validateTagsFilter = '',
                         addFieldClass = '',
                         messageText = 'Add Tags',
+                        showHiddenButton = true,
                         outputConfig = true   // TODO add to controls
                      };
                      //useLowerCaseTags = false,
@@ -210,12 +215,14 @@
                         fieldValue = "",
                         enableTagSorting = false,
                         tagCase = "lower",
-                        tagClass = 'bg-warning',
+                        tagClass = 'bg-success',
+                        tagHoverClass = 'bg-warning',
                            // validateTags = 'global',  // global/local/custom
                            // validateTagsSrc = 'resourceList',
                            // validateTagsFilter = '',
                         addFieldClass = '',
                         messageText = 'Add Tags',
+                        showHiddenButton = true,
                         outputConfig = true   // TODO add to controls
                      };
                   </cfscript>

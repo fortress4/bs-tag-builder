@@ -20,12 +20,13 @@
       <cfargument name="readonly" type="boolean" required="false" default="false">
       <cfargument name="enableTagSorting" type="boolean" required="false" default="false" hint="enforce tag validation">
       <cfargument name="tagCase" type="string" required="false" default="" hint="force tags case: lowercase,uppercase,capitalize">
-      <!---<cfargument name="useLowerCaseTags" type="boolean" required="false" default="false" hint="force lower case tags">--->
       <cfargument name="tagClass" type="string" required="false" default="" hint="">
+      <cfargument name="tagHoverClass" type="string" required="false" default="" hint="">
       <cfargument name="validateTags" type="string" required="false" default="" hint="enforce tag validation">
       <cfargument name="addFieldClass" type="string" required="false" default="">
       <cfargument name="messageText" type="string" required="false" default="No Tags Added!">
 
+      <cfargument name="showHiddenButton" type="boolean" required="false" default="false">
       <cfargument name="outputConfig" type="boolean" required="false" default="false">
 
       <cfscript>
@@ -62,18 +63,15 @@
             data-required="#req#"
             data-readonly="#arguments.readonly#"
             data-autocomplete=0
-            data-tagcase="#arguments.tagCase#"
-            <!---data-lowercasetags="#arguments.useLowerCaseTags#"--->
             data-tagsorting="#arguments.enableTagSorting#"
+            <cfif LEN(TRIM(arguments.tagCase))>data-tagcase="#arguments.tagCase#"</cfif>
             <cfif LEN(TRIM(arguments.tagClass))>data-tagclass="#arguments.tagClass#"</cfif>
+            <cfif LEN(TRIM(arguments.TagHoverClass))>data-taghoverclass="#arguments.TagHoverClass#"</cfif>
             data-validatetags="#arguments.validateTags#">
 
-         <!---<div class="row d-flex">
-            <div class="col"></div>
-            <div class="col-3 d-flex justify-content-end">
-               <button type="button" id="#arguments.fieldID#_showbtn" class="btn btn-secondary btn-sm text-right tagBuilderShowBtn"><i class="fa-regular fa-eye mr-2 tagBuilderShowEye"></i><span>Show Raw Tag List</span><i class="fa-solid fa-caret-down ml-2 tagBuilderShowArrow"></i></button>
-            </div>
-         </div>--->
+         <cfif arguments.showHiddenButton>
+            #renderShowHiddenButton(argumentCollection=arguments)#
+         </cfif>
       </div>
       <cfif arguments.outputConfig>
          <cfset arguments.typeahead = false>
@@ -98,12 +96,13 @@
       <cfargument name="readonly" type="boolean" required="false" default="false">
       <cfargument name="enableTagSorting" type="boolean" required="false" default="false" hint="enforce tag validation">
       <cfargument name="tagCase" type="string" required="false" default="" hint="force tags case: lower,upper,capitalize">
-      <!---<cfargument name="useLowerCaseTags" type="boolean" required="false" default="false" hint="force lower case tags">--->
       <cfargument name="tagClass" type="string" required="false" default="" hint="">
+      <cfargument name="tagHoverClass" type="string" required="false" default="" hint="">
       <cfargument name="validateTags" type="string" required="false" default="" hint="enforce tag validation">
       <cfargument name="addFieldClass" type="string" required="false" default="">
       <cfargument name="messageText" type="string" required="false" default="No Tags Added!">
 
+      <cfargument name="showHiddenButton" type="boolean" required="false" default="false">
       <cfargument name="outputConfig" type="boolean" required="false" default="false">
 
       <cfscript>
@@ -152,11 +151,15 @@
             data-required="#req#"
             data-readonly="#arguments.readonly#"
             data-autocomplete=0
-            data-tagcase="#arguments.tagCase#"
-            <!---data-lowercasetags="#arguments.useLowerCaseTags#"--->
             data-tagsorting="#arguments.enableTagSorting#"
+            <cfif LEN(TRIM(arguments.tagCase))>data-tagcase="#arguments.tagCase#"</cfif>
             <cfif LEN(TRIM(arguments.tagClass))>data-tagclass="#arguments.tagClass#"</cfif>
+            <cfif LEN(TRIM(arguments.tagHoverClass))>data-taghoverclass="#arguments.TagHoverClass#"</cfif>
             data-validatetags="#arguments.validateTags#">
+
+         <cfif arguments.showHiddenButton>
+            #renderShowHiddenButton(argumentCollection=arguments)#
+         </cfif>
       </div>
 
       <cfif arguments.outputConfig>
@@ -171,6 +174,7 @@
       <cfargument name="enableTagSorting" type="boolean" required="false" default="false" hint="enforce tag validation">
       <cfargument name="tagCase" type="string" required="false" default="" hint="force tags case: lower,upper,capitalize">
       <cfargument name="tagClass" type="string" required="false" default="" hint="">
+      <cfargument name="tagHoverClass" type="string" required="false" default="" hint="">
 
       <div id="#arguments.fieldID#_config" class="small">
          <hr class="mt-4">
@@ -178,9 +182,21 @@
          <ul>
             <li>TypeAhead: #YesNoFormat(arguments.typeahead)#</li>
             <li>Enable Tag Sorting: #YesNoFormat(arguments.enableTagSorting)#</li>
-             <cfif LEN(TRIM(arguments.tagCase))><li>Tag Case: #arguments.tagCase#</li></cfif>
+            <cfif LEN(TRIM(arguments.tagCase))><li>Tag Case: #arguments.tagCase#</li></cfif>
             <cfif LEN(TRIM(arguments.tagClass))><li>Tag Class: #arguments.tagClass#</li></cfif>
+            <cfif LEN(TRIM(arguments.tagHoverClass))><li>Tag Hover Class: #arguments.TagHoverClass#</li></cfif>
          </ul>
+      </div>
+   </cffunction>
+
+   <cffunction name="renderShowHiddenButton" access="public" output="yes" returntype="void">
+      <cfargument name="fieldID" type="string" required="true">
+
+      <div class="row d-flex">
+         <div class="col"></div>
+         <div class="w-50 d-flex justify-content-end">
+            <button type="button" id="#arguments.fieldID#_showbtn" class="btn btn-secondary btn-sm text-right tagBuilderShowBtn"><i class="fa-regular fa-eye me-2 tagBuilderShowEye"></i><span>Show Raw Tag List</span><i class="fa-solid fa-caret-down ms-2 tagBuilderShowArrow"></i></button>
+         </div>
       </div>
    </cffunction>
 

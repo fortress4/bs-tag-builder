@@ -39,7 +39,7 @@ $(function() {
       tb_autoComplete(tb_field);
       tb_tagSorting(tb_field);
       //console.log('autoComplete: ',tbConfig.autoComplete);
-      console.log('tagSorting 1: ',tbConfig.tagSorting);
+      // console.log('tagSorting 1: ',tbConfig.tagSorting);
 
       // console.log('tb_field: ', i, obj);
       // console.log('tb_field_id: ', tb_field_id);
@@ -116,12 +116,12 @@ $(function() {
          }
       });
 
-      console.log('tbConfig.tagSorting',tbConfig.tagSorting);
+      // console.log('tbConfig.tagSorting',tbConfig.tagSorting);
 
       if ( tbConfig.tagSorting == 1 )
       {
          tb_tagHoverClass(tb_field);
-         console.log('tbConfig.tagHoverClass',tbConfig.tagHoverClass);
+         //console.log('tbConfig.tagHoverClass',tbConfig.tagHoverClass);
 
          sortable(tb_bin, {
              orientation: 'horizontal',

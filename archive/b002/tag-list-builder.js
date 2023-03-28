@@ -1,6 +1,5 @@
 /*
    tag-builder.js
-   v0.0.003
 */
 
 // declare variable to hold the value from input field

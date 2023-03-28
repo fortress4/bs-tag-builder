@@ -81,6 +81,8 @@
                            // validateTagsFilter = '',
                         addFieldClass = '',
                         messageText = 'Add Tags',
+
+                        showHiddenButton = true,
                         outputConfig = true   // TODO add to controls
                      };
                      //useLowerCaseTags = false,
@@ -131,6 +133,8 @@
                            // validateTagsFilter = '',
                         addFieldClass = '',
                         messageText = 'Add Tags',
+
+                        showHiddenButton = true,
                         outputConfig = true   // TODO add to controls
                      };
                      //useLowerCaseTags = false,
@@ -185,6 +189,7 @@
                            // validateTagsFilter = '',
                         addFieldClass = '',
                         messageText = 'Add Tags',
+
                         showHiddenButton = true,
                         outputConfig = true   // TODO add to controls
                      };
@@ -222,6 +227,7 @@
                            // validateTagsFilter = '',
                         addFieldClass = '',
                         messageText = 'Add Tags',
+
                         showHiddenButton = true,
                         outputConfig = true   // TODO add to controls
                      };

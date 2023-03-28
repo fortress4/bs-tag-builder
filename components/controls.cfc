@@ -146,7 +146,7 @@
 
          <div id="#arguments.fieldID#_msg" class="tagBuilderMsg"><cfif LEN(TRIM(arguments.messageText))>#arguments.messageText#</cfif></div>
          <div id="#arguments.fieldID#_bin" class="tagBuilderBin"><!--- Tag Area ---></div>
-         <input type="text" id="#arguments.fieldID#" name="#arguments.fieldName#" class="tagBuilder d-none" value=""
+         <input type="hidden" id="#arguments.fieldID#" name="#arguments.fieldName#" class="tagBuilder" value=""
             data-fieldvalue="#arguments.fieldValue#"
             data-required="#req#"
             data-readonly="#arguments.readonly#"
@@ -182,10 +182,10 @@
          <ul>
             <li>TypeAhead: #YesNoFormat(arguments.typeahead)#</li>
             <li>Enable Tag Sorting: #YesNoFormat(arguments.enableTagSorting)#</li>
-            <cfif LEN(TRIM(arguments.tagCase))><li>Tag Case: #arguments.tagCase#</li></cfif>
+            <li>Tag Case: <cfif LEN(TRIM(arguments.tagCase))>#arguments.tagCase#<cfelse><em>Not Set</em></cfif></li>
             <cfif LEN(TRIM(arguments.tagClass))><li>Tag Class: #arguments.tagClass#</li></cfif>
             <cfif arguments.enableTagSorting>
-               <cfif LEN(TRIM(arguments.tagHoverClass))><li>Tag Hover Class: #arguments.TagHoverClass#</li></cfif>
+               <cfif LEN(TRIM(arguments.tagHoverClass))><li>Sort Hover Class: #arguments.TagHoverClass#</li></cfif>
             </cfif>
          </ul>
       </div>
